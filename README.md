@@ -62,7 +62,7 @@ To get the first block from the chain, navigate to `localhost:8000/block/0` (0 m
 ```
 
 ##### Create a new block in the chain
-Post to `localhost:8000/block` with parameter `body` filled with the new block content. Example using Fetch API from within the same origin:
+Post to `localhost:8000/block` with parameter `body` filled with the new block content. Example using Fetch API:
 
 ```
 const postData = (url = ``, data = {}) => {
