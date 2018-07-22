@@ -2,7 +2,7 @@
 This API was built in `Node` using `Express.js`. The API has three endpoints that allow interaction with the chain:
 
 - `/chain` - **(GET)** returns the whole chain correctly sorted by height;
-- `/block/.height` - **(GET)** returns a block from the chain, given its height;
+- `/block/:height` - **(GET)** returns a block from the chain, given its height;
 - `block` - **(POST)** creates a new block in the chain given its body content. Returns the block if saved correctly.
 
 ### Setup
