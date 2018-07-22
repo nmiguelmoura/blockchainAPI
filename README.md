@@ -8,7 +8,7 @@ This API was built in `Node` using `Express.js`. The API has three endpoints tha
 ### Setup
 1. Install [Node](https://nodejs.org);
 2. On the terminal, open the project folder and run `npm i`;
-3. on the terminal, run `npm start`;
+3. On the terminal, run `npm start`;
 4. On the browser, navigate to `localhost:8000`.
 
 ### Usage
