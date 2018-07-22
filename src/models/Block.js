@@ -5,7 +5,7 @@
 class Block {
     constructor(data) {
         /**
-         * @param {array}   data    The data to insert in block body.
+         * @param {string}   data    The data to insert in block body.
          * */
         this.hash = "";
         this.height = 0;
