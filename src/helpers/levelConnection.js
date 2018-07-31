@@ -14,7 +14,7 @@ function saveBlock(key, value) {
                 reject(`Error: block #${key} submission failed`);
             }
 
-            resolve();
+            resolve(value);
         })
     })
 

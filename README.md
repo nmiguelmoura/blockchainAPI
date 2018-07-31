@@ -83,7 +83,7 @@ const postData = (url = ``, data = {}) => {
     .catch(error => console.error(`Fetch Error =\n`, error));
 };
 
-postData(`http://localhost:8000/block`, {body: `Genesis block`})
+postData(`http://localhost:8000/block`, {body: `Test--1`})
   .then(data => console.log(data)) // JSON from `response.json()` call
   .catch(error => console.error(error));
   

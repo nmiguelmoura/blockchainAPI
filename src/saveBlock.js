@@ -18,36 +18,57 @@ async function saveBlock (req, res) {
         // Get the height of the new block, by determining the length of the chain.
         let height = await db.getChainLength();
 
-        // Instantiate a new Block.
-        let block = new Block(body);
+        if (height === 0) {
+            //Run if there are no blocks in the chain
 
-        // Store the height of the block.
-        block.height = height;
+            //Wait for the creation of Genesis block.
+            await _saveBlock(0, "Genesis block - first block in the chain")
+                .catch(error => {
+                    res.send(error);
+                });
 
-        // Store the timestamp.
-        block.time = +new Date();
-
-        if(height > 0) {
-            // If the block is not the Genesis block, get the previous block;
-            let previousBlock = await db.getBlock(height - 1);
-
-            // Set the previousBlockHash to match the hash from the previous block.
-            block.previousBlockHash = previousBlock.hash;
+            // Set height to 1 after Genesis Block created.
+            height = 1;
         }
 
-        // Get the block hash.
-        block.hash = SHA256(JSON.stringify(block)).toString();
-
-        // Save the block in levelDB.
-        db.saveBlock(height, JSON.stringify(block))
-            .then(r => {
-                res.json(block);
+        // Save the new block in LevelDB
+        _saveBlock(height, body)
+            .then(block => {
+                res.json(JSON.parse(block));
             })
-            .catch(err => {res.send("Error: an unexpected error occurred.")});
+            .catch(error => {
+                res.send(error);
+            });
+
     } else {
         // If no body content has been passed, output a warning.
         res.send("Error: a body must be included in the block.")
     }
+}
+
+async function _saveBlock(height, body) {
+    // Instantiate a new Block.
+    let block = new Block(body);
+
+    // Store the height of the block.
+    block.height = height;
+
+    // Store the timestamp.
+    block.time = +new Date();
+
+    if(height > 0) {
+        // If the block is not the Genesis block, get the previous block;
+        let previousBlock = await db.getBlock(height - 1);
+
+        // Set the previousBlockHash to match the hash from the previous block.
+        block.previousBlockHash = previousBlock.hash;
+    }
+
+    // Get the block hash.
+    block.hash = SHA256(JSON.stringify(block)).toString();
+
+    // Save the block in levelDB.
+    return db.saveBlock(height, JSON.stringify(block));
 }
 
 module.exports = saveBlock;
