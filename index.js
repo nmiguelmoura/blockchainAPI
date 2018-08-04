@@ -11,6 +11,8 @@ const app = express();
 const getChain = require('./src/getChain');
 const getBlock = require('./src/getBlock');
 const saveBlock = require('./src/saveBlock');
+const requestValidation = require('./src/requestValidation');
+const signatureValidation = require('./src/signatureValidation');
 
 // Configure body-parser to allow access to posted data.
 app.use(bodyParser.json());
@@ -41,6 +43,15 @@ app.get('/block/:height', (req, res) => {
 // Route for '/block'. This is a post only route.
 app.post('/block', (req, res) => {
     saveBlock(req, res);
+});
+
+// Route for '/requestValidation'. This is a post only route.
+app.post('/requestValidation', (req, res) => {
+    requestValidation(req, res);
+});
+
+app.post('/message-signature/validate', (req, res) => {
+    signatureValidation(req, res);
 });
 
 // Start listening to port;
