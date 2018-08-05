@@ -36,7 +36,7 @@ app.get('/chain', (req, res) => {
 });
 
 // Route for '/block/:height', being height the key used to query DB
-app.get('/block/:height', (req, res) => {
+app.get('/block/:info', (req, res) => {
     getBlock(req, res);
 });
 

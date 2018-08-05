@@ -1,15 +1,18 @@
 /**
- * Class to create a block constructor.
+ * Model to block to be added to the chain.
  * */
 
 class Block {
-    constructor(data) {
+    constructor(address, star) {
         /**
-         * @param {string}   data    The data to insert in block body.
+         * @param {string}   address    The data to insert in block body.
          * */
         this.hash = "";
         this.height = 0;
-        this.body = data;
+        this.body = {
+            address: address,
+            star: star
+        };
         this.time = 0;
         this.previousBlockHash = "";
     }

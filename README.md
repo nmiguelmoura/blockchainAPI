@@ -16,76 +16,191 @@ This API was built in `Node` using `Express.js`. The API has three endpoints tha
 To get the whole chain, navigate to `localhost:8000/chain`. The JSON output is similar to the following:
 
 ```
-[  
-   {  
-      "hash":"c59465e96a692ba8923162abd6ff48a3d94d96dee172bd222284c6386167c978",
-      "height":0,
-      "body":"Genesis block",
-      "time":1532281456957,
-      "previousBlockHash":""
-   },
-   {  
-      "hash":"e8d87c6e62907384f76e3c37492ad54422b34a360062b850de55a4c1d79405c9",
-      "height":1,
-      "body":"Test-block-1",
-      "time":1532281458966,
-      "previousBlockHash":"c59465e96a692ba8923162abd6ff48a3d94d96dee172bd222284c6386167c978"
-   },
-   {  
-      "hash":"7ca9cbf0914195d73af7675efe7e59bc974bcc23978e3177fb9dd75eb4979ca4",
-      "height":2,
-      "body":"Test-block-2",
-      "time":1532281461823,
-      "previousBlockHash":"e8d87c6e62907384f76e3c37492ad54422b34a360062b850de55a4c1d79405c9"
-   },
-   {  
-      "hash":"a87a27eb8855f2746e01b2cf49bd1e9e4a7e102bbc004ff12907b107121d9477",
-      "height":3,
-      "body":"Test-block-3",
-      "time":1532281464270,
-      "previousBlockHash":"7ca9cbf0914195d73af7675efe7e59bc974bcc23978e3177fb9dd75eb4979ca4"
-   }
+[
+    {
+        "hash": "40b026cd13ee27e4e716335c5f66444be5cc1b65a28d6b531016b9454f956037",
+        "height": 0,
+        "body": {
+            "address": "0",
+            "star": {
+                "dec": "Genesis Block",
+                "ra": "Genesis Block",
+                "story": "47656e6573697320426c6f636b"
+            }
+        },
+        "time": 1533467464366,
+        "previousBlockHash": ""
+    },
+    {
+        "hash": "221a1a3a9e08c19f392efc808756adb2dfa659d3275220d2f605a779a03ddabb",
+        "height": 1,
+        "body": {
+            "address": "13TjEENu5qFuwF5hcPzqNLftgY7pxvUxfz",
+            "star": {
+                "dec": "2",
+                "ra": "10",
+                "story": "34",
+                "mag": "teeste",
+                "constel": "2"
+            }
+        },
+        "time": 1533467464367,
+        "previousBlockHash": "40b026cd13ee27e4e716335c5f66444be5cc1b65a28d6b531016b9454f956037"
+    },
+    {
+        "hash": "1542c478846b5886c0a8e9b97704d7f85c31b5d33e624494372d37031e102f7e",
+        "height": 2,
+        "body": {
+            "address": "13TjEENu5qFuwF5hcPzqNLftgY7pxvUxfz",
+            "star": {
+                "dec": "2",
+                "ra": "124234",
+                "story": "34",
+                "mag": "teeste",
+                "constel": "2"
+            }
+        },
+        "time": 1533467469625,
+        "previousBlockHash": "221a1a3a9e08c19f392efc808756adb2dfa659d3275220d2f605a779a03ddabb"
+    }
 ]
 ```
 
-##### Get a block from the chain
-To get the first block from the chain, navigate to `localhost:8000/block/0` (0 might be replaced by the desired block height):
+##### Get a block from the chain by height
+To get the first block from the chain, navigate to `localhost:8000/block/1` (1 might be replaced by the desired block height):
 
 ```
-{  
-      "hash":"c59465e96a692ba8923162abd6ff48a3d94d96dee172bd222284c6386167c978",
-      "height":0,
-      "body":"Genesis block",
-      "time":1532281456957,
-      "previousBlockHash":""
-   }
+{
+        "hash": "221a1a3a9e08c19f392efc808756adb2dfa659d3275220d2f605a779a03ddabb",
+        "height": 1,
+        "body": {
+            "address": "13TjEENu5qFuwF5hcPzqNLftgY7pxvUxfz",
+            "star": {
+                "dec": "2",
+                "ra": "10",
+                "story": "34",
+                "mag": "teeste",
+                "constel": "2"
+            }
+        },
+        "time": 1533467464367,
+        "previousBlockHash": "40b026cd13ee27e4e716335c5f66444be5cc1b65a28d6b531016b9454f956037"
+    }
+```
+
+##### Get a block from the chain by hash
+To get a block by hash, navigate to `localhost:8000/block/hash:221a1a3a9e08c19f392efc808756adb2dfa659d3275220d2f605a779a03ddabb`:
+
+```
+{
+        "hash": "221a1a3a9e08c19f392efc808756adb2dfa659d3275220d2f605a779a03ddabb",
+        "height": 1,
+        "body": {
+            "address": "13TjEENu5qFuwF5hcPzqNLftgY7pxvUxfz",
+            "star": {
+                "dec": "2",
+                "ra": "10",
+                "story": "34",
+                "mag": "teeste",
+                "constel": "2"
+            }
+        },
+        "time": 1533467464367,
+        "previousBlockHash": "40b026cd13ee27e4e716335c5f66444be5cc1b65a28d6b531016b9454f956037"
+    }
+```
+
+##### Get a block from the chain by address
+To get blocks by address, navigate to `localhost:8000/block/address:13TjEENu5qFuwF5hcPzqNLftgY7pxvUxfz`:
+
+```
+[
+    {
+        "hash": "221a1a3a9e08c19f392efc808756adb2dfa659d3275220d2f605a779a03ddabb",
+        "height": 1,
+        "body": {
+            "address": "13TjEENu5qFuwF5hcPzqNLftgY7pxvUxfz",
+            "star": {
+                "dec": "2",
+                "ra": "10",
+                "story": "34",
+                "mag": "teeste",
+                "constel": "2"
+            }
+        },
+        "time": 1533467464367,
+        "previousBlockHash": "40b026cd13ee27e4e716335c5f66444be5cc1b65a28d6b531016b9454f956037"
+    },
+    {
+        "hash": "1542c478846b5886c0a8e9b97704d7f85c31b5d33e624494372d37031e102f7e",
+        "height": 2,
+        "body": {
+            "address": "13TjEENu5qFuwF5hcPzqNLftgY7pxvUxfz",
+            "star": {
+                "dec": "2",
+                "ra": "124234",
+                "story": "34",
+                "mag": "teeste",
+                "constel": "2"
+            }
+        },
+        "time": 1533467469625,
+        "previousBlockHash": "221a1a3a9e08c19f392efc808756adb2dfa659d3275220d2f605a779a03ddabb"
+    }
+]
+```
+
+##### Request address validation
+To request validation of your address, post a request to `localhost:8000/requestValidation` and include your wallet address in the payload with key `address`. The response will be like:
+
+```
+{
+    "address": "your_address",
+    "timestamp": 1533467389619,
+    "message": "your_address:1533467389619:starRegistry",
+    "validationWindow": 300
+}
+```
+
+##### Validate your address with the message signature
+To validate your address, post a request to `localhost:8000/message-signature/validate` and include your wallet address in the payload with key `address` and the signature with key `signature`. The response will be like:
+
+```
+{
+    "registerStar": true,
+    "status": {
+        "address": "your_address",
+        "timestamp": 1533467371963,
+        "message": "your_address:1533467371963:starRegistry",
+        "validationWindow": 214.75799999999998
+    }
+}
 ```
 
 ##### Create a new block in the chain
-Post to `localhost:8000/block` with parameter `body` filled with the new block content. Example using Fetch API:
+Post to `localhost:8000/block` with parameter `address` filled with your address, and parameter `star` being a stringified object like presented bellow. If block is added to the chain, you'll get a response like:
 
 ```
-const postData = (url = ``, data = {}) => {
-  // Default options are marked with *
-    return fetch(url, {
-        method: "POST", // *GET, POST, PUT, DELETE, etc.
-        mode: "cors", // no-cors, cors, *same-origin
-        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: "same-origin", // include, same-origin, *omit
-        headers: {
-            "Content-Type": "application/json; charset=utf-8",
-            // "Content-Type": "application/x-www-form-urlencoded",
-        },
-        redirect: "follow", // manual, *follow, error
-        body: JSON.stringify(data), // body data type must match "Content-Type" header
-    })
-    .then(response => response.json()) // parses response to JSON
-    .catch(error => console.error(`Fetch Error =\n`, error));
-};
-
-postData(`http://localhost:8000/block`, {body: `Test--1`})
-  .then(data => console.log(data)) // JSON from `response.json()` call
-  .catch(error => console.error(error));
-  
-  // Example use of Fetch API from https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+{
+    "hash": "f100eb5b05c27aa09471747587a89dc34f6a526cf03088aa07986d78aba4b7cc",
+    "height": 3,
+    "body": {
+        "address": "your_address",
+        "star": {
+            "dec": "your_star_declination",
+            "ra": "your_star_right_ascension",
+            "story": "Your_star_story",
+            "mag": "your_star_magnitude",
+            "constel": "your_star_nearest_constellation"
+        }
+    },
+    "time": 1533467486142,
+    "previousBlockHash": "1542c478846b5886c0a8e9b97704d7f85c31b5d33e624494372d37031e102f7e"
+}
 ``` 
+
+### How to post a new star?
+1. Submit your wallet address to `localhost:8000/requestValidation`.
+2. Sign the message you got from the response.
+3. Submit your address and your signature to `localhost:8000/message-signature/validate`.
+4. Submit your star info to `localhost:8000/block`. Include your address and star info in object format. Star info should contain parameters `dec` (declination), `ra` (right ascension), `story` (your star story). It can also contain optional parameters `ma` (magnitude) and `constel` (constellation).

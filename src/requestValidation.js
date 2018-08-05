@@ -20,13 +20,17 @@ function requestValidation(req, res) {
         // Get data to temporarily store and send to the user.
         const regRequest = new RegRequest(address);
 
+        // Save request on memory.
         mem.save(address, JSON.stringify(regRequest))
             .then(() => {
-                // Issue response to the user.
+                // Set request validation window.
                 regRequest.validationWindow = VALIDATION_WINDOW;
+
+                // Issue response to the user.
                 res.json(regRequest);
             })
             .catch(e => {
+                // Responds with an error if something wrong happens with saving request to memory.
                 res.send('Error: an error occurred while processing your address. Please try again.')
             });
 

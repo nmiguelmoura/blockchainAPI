@@ -17,7 +17,6 @@ function saveBlock(key, value) {
             resolve(value);
         })
     })
-
 }
 
 // Get data from levelDB with key.
@@ -61,7 +60,7 @@ function getChain() {
                 result.push(data.value);
             })
             .on('error', function () {
-                reject('Error retrieving from data from DB');
+                reject('Error: Error retrieving from data from DB');
             })
             .on('close', function () {
                 result = result
@@ -76,9 +75,57 @@ function getChain() {
     });
 }
 
+function getBlockByHash(hash) {
+    return new Promise(function (resolve, reject) {
+        let temp,
+            result = null;
+
+        db.createValueStream()
+            .on('data', function (data) {
+                temp = JSON.parse(data);
+                if (hash === temp.hash) {
+                    result = temp;
+                }
+            })
+            .on('error', function () {
+                reject('Error: Error retrieving from data from DB');
+            })
+            .on('close', function () {
+                resolve(result);
+            })
+
+    });
+}
+
+function getBlocksByAddress(address) {
+    return new Promise(function (resolve, reject) {
+        let temp,
+            result = [];
+
+        db.createValueStream()
+            .on('data', function(data) {
+                temp = JSON.parse(data);
+                if (address === temp.body.address) {
+                    result.push(data);
+                }
+            })
+            .on('error', function() {
+                reject('Error: Error retrieving from data from DB');
+            })
+            .on('close', function() {
+                result = result.map(r => {
+                    return JSON.parse(r);
+                });
+                resolve(result);
+            })
+    });
+}
+
 module.exports = {
-    'getBlock': getBlock,
-    'getChain': getChain,
-    'getChainLength': getChainLength,
-    'saveBlock': saveBlock
+    getBlock,
+    getChain,
+    getChainLength,
+    saveBlock,
+    getBlockByHash,
+    getBlocksByAddress
 };

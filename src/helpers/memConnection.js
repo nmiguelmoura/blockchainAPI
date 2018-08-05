@@ -1,7 +1,11 @@
 const mem = require('level-mem');
 const db = mem();
 
-// Add data to levelDB with key/value pair.
+/**
+ * Module to communicate with mem to store in memory data.
+ * */
+
+// Add data to mem with key/value pair.
 function save(key, value) {
     return new Promise(function (resolve, reject) {
         db.put(key, value, function (err) {
@@ -14,7 +18,7 @@ function save(key, value) {
     })
 }
 
-// Get data from levelDB with key.
+// Get data from mem with key.
 function get(key) {
     return new Promise(function (resolve, reject) {
         db.get(key, function (err, value) {
