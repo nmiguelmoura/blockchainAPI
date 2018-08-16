@@ -35,9 +35,19 @@ app.get('/chain', (req, res) => {
     getChain(req, res);
 });
 
+// Route for '/block/hash:[HASH]'
+app.get('/block/hash::info', (req, res) => {
+    getBlock(req, res, "hash");
+});
+
+// Route for '/block/address:[ADDRESS]'
+app.get('/block/address::info', (req, res) => {
+    getBlock(req, res, "address");
+});
+
 // Route for '/block/:height', being height the key used to query DB
 app.get('/block/:info', (req, res) => {
-    getBlock(req, res);
+    getBlock(req, res, "height");
 });
 
 // Route for '/block'. This is a post only route.

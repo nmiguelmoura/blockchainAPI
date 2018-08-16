@@ -39,8 +39,11 @@ async function saveBlock(req, res) {
         // Run if address and star exists.
 
         try {
-            // Try to parse star data.
-            star = JSON.parse(star);
+            // Try to parse star data if not already an object.
+            if (typeof star !== "object") {
+                star = JSON.parse(star);
+            }
+
         } catch (e) {
             // If not possible to parse, respond with error message.
             res.send('Error: Star info format is incorrect. Should provide a JSON.');

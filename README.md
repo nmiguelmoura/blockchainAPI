@@ -80,7 +80,8 @@ To get the first block from the chain, navigate to `localhost:8000/block/1` (1 m
                 "ra": "10",
                 "story": "34",
                 "mag": "teeste",
-                "constel": "2"
+                "constel": "2",
+                "storyDecoded": 4
             }
         },
         "time": 1533467464367,
@@ -102,7 +103,8 @@ To get a block by hash, navigate to `localhost:8000/block/hash:221a1a3a9e08c19f3
                 "ra": "10",
                 "story": "34",
                 "mag": "teeste",
-                "constel": "2"
+                "constel": "2",
+                "storyDecoded": 4
             }
         },
         "time": 1533467464367,
@@ -125,7 +127,8 @@ To get blocks by address, navigate to `localhost:8000/block/address:13TjEENu5qFu
                 "ra": "10",
                 "story": "34",
                 "mag": "teeste",
-                "constel": "2"
+                "constel": "2",
+                "storyDecoded": 4
             }
         },
         "time": 1533467464367,
@@ -141,7 +144,8 @@ To get blocks by address, navigate to `localhost:8000/block/address:13TjEENu5qFu
                 "ra": "124234",
                 "story": "34",
                 "mag": "teeste",
-                "constel": "2"
+                "constel": "2",
+                "storyDecoded": 4
             }
         },
         "time": 1533467469625,
