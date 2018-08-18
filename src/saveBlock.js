@@ -77,6 +77,10 @@ async function saveBlock(req, res) {
                         // Save the new block in LevelDB
                         _saveBlock(height, address, star)
                             .then(block => {
+                                // If save was successful, delete the request from memory.
+                                // That way, its only allowed one post per request
+                                mem.del(address);
+
                                 // If save was successful, respond with newly created block.
                                 res.json(JSON.parse(block));
                             })

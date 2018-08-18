@@ -31,7 +31,21 @@ function get(key) {
     });
 }
 
+// Delete data from mem with key.
+function del(key) {
+    return new Promise(function (resolve, reject) {
+        db.del(key, function (err, value) {
+            if (err) {
+                reject('Error: Block not found!', err);
+            } else {
+                resolve(`Block with key ${key} deleted!`);
+            }
+        });
+    });
+}
+
 module.exports = {
     save,
-    get
+    get,
+    del
 };
